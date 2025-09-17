@@ -52,7 +52,7 @@ android {
 
 dependencies {
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${libs.versions.kotlin}")
+    implementation(libs.kotlin.stdlib.jdk8)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -62,12 +62,19 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
     implementation(libs.androidx.room.common.jvm)
     implementation(libs.androidx.room.runtime.android)
+    ksp(libs.androidx.room.compiler)
 
     // Hilt
     implementation(libs.hilt.android)
+    implementation(libs.ads.mobile.sdk)
     ksp(libs.hilt.android.compiler)
+
+    //Navigation
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     //Testing
     testImplementation(libs.junit)

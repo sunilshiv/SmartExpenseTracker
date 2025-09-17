@@ -1,47 +1,71 @@
 package com.assignent.expensetracker
 
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.assignent.expensetracker.ui.theme.SmartExpenseTrackerTheme
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.assignent.expensetracker.ui.nav.ExpenseNavGraph
+import com.assignent.expensetracker.ui.screens.ExpenseEntryScreen
+import com.assignent.expensetracker.ui.screens.ExpenseListScreen
+import com.assignent.expensetracker.ui.screens.ExpenseReportScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            SmartExpenseTrackerTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            val navController = rememberNavController()
+
+            Surface(color = MaterialTheme.colorScheme.background) {
+                NavHost(
+                    navController = navController,
+                    startDestination = "entry"
+                ) {
+                    composable("entry") {
+                        ExpenseEntryScreen(
+                            onNavigateToList = { navController.navigate("list") }
+                        )
+                    }
+                    composable("list") {
+                        ExpenseListScreen(
+                            onNavigateToReport = { navController.navigate("report") }
+                        )
+                    }
+                    composable("report") {
+                        ExpenseReportScreen()
+                    }
                 }
             }
         }
     }
 }
 
+/*
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun ExpenseApp() {
+    val navController = rememberNavController()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SmartExpenseTrackerTheme {
-        Greeting("Android")
+    Surface(color = Resources.Theme.colors.background) {
+        NavHost(
+            navController = navController,
+            startDestination = "entry"   // ✅ Start at ExpenseEntryScreen
+        ) {
+            composable("entry") {
+                ExpenseEntryScreen(onNavigateToList = { navController.navigate("list") })
+            }
+            composable("list") {
+                ExpenseListScreen(onNavigateToReport = { navController.navigate("report") })
+            }
+            composable("report") {
+                ExpenseReportScreen()
+            }
+        }
     }
-}
+}*/
