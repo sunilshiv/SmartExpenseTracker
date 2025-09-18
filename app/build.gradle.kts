@@ -76,6 +76,12 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
 
+    // Vico Compose (charts for Compose, built on MPAndroidChart-like APIs)
+    implementation(libs.mpandroidchart)
+    implementation("com.patrykandpatrick.vico:compose:1.13.0")
+    implementation("com.patrykandpatrick.vico:core:1.13.0")
+    implementation("com.patrykandpatrick.vico:compose-m3:1.13.0")
+
     //Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
