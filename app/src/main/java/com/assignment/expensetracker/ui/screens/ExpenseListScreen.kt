@@ -24,7 +24,7 @@ fun ExpenseListScreen(
     val state by viewModel.uiState.collectAsState()
 
     Scaffold(
-        /*topBar = {
+        topBar = {
             TopAppBar(
                 title = { Text("Expenses") },
                 actions = {
@@ -38,7 +38,7 @@ fun ExpenseListScreen(
                 }
             )
 
-        }*/,
+        },
 
         floatingActionButton = {
             FloatingActionButton(onClick = onNavigateToReport) {
