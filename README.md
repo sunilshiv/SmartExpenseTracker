@@ -21,39 +21,6 @@ A modern **Expense Tracking App** built with **Jetpack Compose**, **Clean MVVM A
 
 This project follows **Clean MVVM Architecture** with **UseCases**:
 
-app
-├── data
-│    ├── db
-│    │    ├── AppDatabase.kt
-│    │    └── ExpenseDao.kt
-│    ├── model
-│    │    └── Expense.kt
-│    └── repository
-│         └── ExpenseRepository.kt
-├── di
-│    └── AppModule.kt
-├── domain
-│    ├── model
-│    │    └── ReportModels.kt
-│    └── usecase
-│         ├── AddExpenseUseCase.kt
-│         ├── GetExpensesByDateUseCase.kt
-│         └── GetReportUseCase.kt
-├── ui
-│    ├── components
-│    │    ├── CategoryDropdown.kt
-│    │    └── ScreenScaffold.kt
-│    ├── navigation
-│    │    └── ExpenseNavGraph.kt
-│    ├── screens
-│    │    ├── ExpenseEntryScreen.kt
-│    │    ├── ExpenseListScreen.kt
-│    │    └── ExpenseReportScreen.kt
-│    └── viewmodels
-│         └── ExpenseViewModel.kt
-└── MainActivity.kt
-
-
 
 - **UI Layer**: Jetpack Compose screens (Stateless UIs)
 - **ViewModel Layer**: Exposes immutable state via `StateFlow`
