@@ -47,6 +47,8 @@ fun ExpenseEntryScreen(
     val scale = animateFloatAsState(targetValue = animateScale)
 
     Column(modifier = androidx.compose.ui.Modifier.padding(16.dp)) {
+        Text("Add Expenses:", style = MaterialTheme.typography.titleLarge )
+        Spacer(Modifier.height(12.dp))
         Text("Total Spent Today: ₹${state.totalToday}", style = MaterialTheme.typography.titleLarge )
         Spacer(Modifier.height(12.dp))
 

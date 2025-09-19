@@ -34,7 +34,7 @@ fun ExpenseListScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Expenses") },
+                title = { Text("View Expenses") },
                 actions = {
                     TextButton(onClick = { viewModel.toggleGroupBy() }) {
                         Text(
@@ -50,7 +50,7 @@ fun ExpenseListScreen(
 
         floatingActionButton = {
             FloatingActionButton(onClick = onNavigateToReport) {
-                Text("View Report",
+                Text("View Chart",
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(8.dp)
                 )
