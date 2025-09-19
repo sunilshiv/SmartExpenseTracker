@@ -19,11 +19,12 @@ import java.util.*
 fun ExpenseListScreen(
     onNavigateToReport: () -> Unit,
     viewModel: ExpenseViewModel = hiltViewModel()
+
 ) {
     val state by viewModel.uiState.collectAsState()
 
     Scaffold(
-        topBar = {
+        /*topBar = {
             TopAppBar(
                 title = { Text("Expenses") },
                 actions = {
@@ -36,7 +37,9 @@ fun ExpenseListScreen(
                     }
                 }
             )
-        },
+
+        }*/,
+
         floatingActionButton = {
             FloatingActionButton(onClick = onNavigateToReport) {
                 Text("View Report",

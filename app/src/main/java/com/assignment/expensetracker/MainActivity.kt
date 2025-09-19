@@ -8,6 +8,7 @@ import androidx.compose.material3.Surface
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.assignment.expensetracker.ui.nav.ExpenseNavGraph
 import com.assignment.expensetracker.ui.screens.ExpenseEntryScreen
 import com.assignment.expensetracker.ui.screens.ExpenseListScreen
 import com.assignment.expensetracker.ui.screens.ExpenseReportScreen
@@ -19,6 +20,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
+          //  ExpenseNavGraph(navController)
 
             Surface(color = MaterialTheme.colorScheme.background) {
                 NavHost(
