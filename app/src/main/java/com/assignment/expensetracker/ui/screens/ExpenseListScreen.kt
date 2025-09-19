@@ -14,6 +14,10 @@ import com.assignment.expensetracker.ui.viewmodels.ExpenseViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Screen that displays expenses.
+ * Toggle: group by category or by date
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExpenseListScreen(
@@ -23,6 +27,10 @@ fun ExpenseListScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
 
+    /**
+     * Scaffold displays with TopAppBar
+     * Supports title and actions
+     */
     Scaffold(
         topBar = {
             TopAppBar(
@@ -113,28 +121,6 @@ private fun ExpensesByDateTime(expenses: List<Expense>) {
     }
 }
 
-/*
-@Composable
-private fun ExpensesByDateTime(expenses: List<Expense>) {
-    // Sort by dateMillis descending (latest first)
-    val sorted = expenses.sortedByDescending { it.timestamp }
-    val formatter = SimpleDateFormat("dd MMM yyyy, hh:mm a", Locale.getDefault())
-
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
-        items(sorted) { expense ->
-            Column(modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)) {
-                Text(
-                    text = formatter.format(Date(expense.timestamp),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.primary
-                ))
-            }
-        }
-    }
-}
-*/
 
 @Composable
 private fun ExpenseItem(expense: Expense) {

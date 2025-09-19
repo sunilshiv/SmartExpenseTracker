@@ -13,6 +13,9 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * Provides app-level dependencies using Hilt
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepoModule {

@@ -13,6 +13,9 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * Data class holding UIState
+ */
 data class ExpenseUiState(
     val todaysExpenses: List<Expense> = emptyList(),
     val totalToday: Double = 0.0,
@@ -20,7 +23,12 @@ data class ExpenseUiState(
     val loading: Boolean = true,
     val groupByCategory: Boolean = false // 👈 added back
 )
-
+/**
+ * ViewModel for managing Expenses.
+ * - Handles UI state
+ * - Coordinates with UseCases
+ * - Exposes data via StateFlow
+ */
 @HiltViewModel
 class ExpenseViewModel @Inject constructor(
     private val addExpenseUseCase: AddExpenseUseCase,
@@ -28,12 +36,13 @@ class ExpenseViewModel @Inject constructor(
     private val getReportUseCase: GetReportUseCase
 ) : ViewModel() {
 
+    // StateFlow to manage expenses list UI
     private val _uiState = MutableStateFlow(ExpenseUiState())
     val uiState: StateFlow<ExpenseUiState> = _uiState.asStateFlow()
 
     private val selectedDate = MutableStateFlow(System.currentTimeMillis())
 
-    // ✅ Report StateFlow
+    // StateFlow for reports (Daily totals + Category totals)
     private val _reportState: StateFlow<Pair<List<DailyTotal>, List<CategoryTotal>>> =
         getReportUseCase()
             .stateIn(
@@ -43,7 +52,7 @@ class ExpenseViewModel @Inject constructor(
             )
     val reportState: StateFlow<Pair<List<DailyTotal>, List<CategoryTotal>>> = _reportState
 
-
+    // Load today's expenses on startup
     init {
         selectedDate
             .flatMapLatest { date -> getExpensesByDateUseCase(date) }
@@ -60,6 +69,9 @@ class ExpenseViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 
+    /**
+     * Adds a new expense using the domain use case
+     */
     fun addExpense(expense: Expense) {
         viewModelScope.launch {
             if (expense.title.isBlank() || expense.amount <= 0.0) {
@@ -79,7 +91,9 @@ class ExpenseViewModel @Inject constructor(
         selectedDate.value = dateMillis
     }
 
-    // 👇 Added back
+    /**
+     * Toggles grouping between category and date in the list screen
+     */
     fun toggleGroupBy() {
         _uiState.update { it.copy(groupByCategory = !it.groupByCategory) }
     }

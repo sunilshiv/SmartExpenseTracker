@@ -4,6 +4,10 @@ import androidx.room.*
 import com.assignment.expensetracker.data.model.Expense
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Data Access Object (DAO) for Room database.
+ * Defines queries to manage expenses.
+ */
 @Dao
 interface ExpenseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

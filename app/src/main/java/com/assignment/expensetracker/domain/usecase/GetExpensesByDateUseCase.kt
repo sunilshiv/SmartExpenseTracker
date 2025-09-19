@@ -5,6 +5,9 @@ import com.assignment.expensetracker.data.repo.ExpenseRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/**
+ * GetExpensesByDateUseCase - fetches today's expenses
+ */
 class GetExpensesByDateUseCase @Inject constructor(
     private val repo: ExpenseRepository
 ) {

@@ -14,6 +14,10 @@ import com.assignment.expensetracker.ui.screens.ExpenseListScreen
 import com.assignment.expensetracker.ui.screens.ExpenseReportScreen
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Entry point of the app.
+ * Sets up NavController and ExpenseNavGraph.
+ */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,26 +49,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-/*
-@Composable
-fun ExpenseApp() {
-    val navController = rememberNavController()
-
-    Surface(color = Resources.Theme.colors.background) {
-        NavHost(
-            navController = navController,
-            startDestination = "entry"   // ✅ Start at ExpenseEntryScreen
-        ) {
-            composable("entry") {
-                ExpenseEntryScreen(onNavigateToList = { navController.navigate("list") })
-            }
-            composable("list") {
-                ExpenseListScreen(onNavigateToReport = { navController.navigate("report") })
-            }
-            composable("report") {
-                ExpenseReportScreen()
-            }
-        }
-    }
-}*/

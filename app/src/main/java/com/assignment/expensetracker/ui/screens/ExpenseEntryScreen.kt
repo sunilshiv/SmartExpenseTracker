@@ -19,11 +19,20 @@ import com.assignment.expensetracker.ui.viewmodels.ExpenseViewModel
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.assignment.expensetracker.ui.theme.CategoryDropdown
 
+/**
+ * Screen to add a new expense.
+ * Includes:
+ * - Title input
+ * - Amount input
+ * - Category dropdown
+ * - Submit button
+ */
 @Composable
 fun ExpenseEntryScreen(
     viewModel: ExpenseViewModel = hiltViewModel(),
     onNavigateToList: () -> Unit
 ) {
+    // Local states for inputs
     val ctx = LocalContext.current
     val state by viewModel.uiState.collectAsState()
     var title by remember { mutableStateOf("") }
@@ -41,36 +50,41 @@ fun ExpenseEntryScreen(
         Text("Total Spent Today: ₹${state.totalToday}", style = MaterialTheme.typography.titleLarge )
         Spacer(Modifier.height(12.dp))
 
+        // Title input
         OutlinedTextField(value = title, onValueChange = { title = it }, label = { Text("Title") })
         Spacer(Modifier.height(8.dp))
+
+        // Amount input
         OutlinedTextField(value = amountText, onValueChange = { amountText = it }, label = { Text("Amount (₹)") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number))
         Spacer(Modifier.height(8.dp))
+
+        // Category dropdown
         CategoryDropdown(
             categories = listOf("Food", "Transport", "Shopping", "Bills", "Other"),
             selectedCategory = selectedCategory,
             onCategorySelected = { selectedCategory = it }
         )
-       /* Row {
-            listOf("Staff", "Travel", "Food", "Utility").forEach { cat ->
-                Button(onClick = { category = cat }, modifier = androidx.compose.ui.Modifier.padding(end = 8.dp)) {
-                    Text(cat)
-                }
-            }
-        }*/
+
         Spacer(Modifier.height(8.dp))
         OutlinedTextField(value = notes, onValueChange = { if (it.length <= 100) notes = it }, label = { Text("Notes (optional)") })
         Spacer(Modifier.height(12.dp))
         Row {
+            //Submit button
             Button(onClick = {
                 val amt = amountText.toDoubleOrNull() ?: 0.0
                 val expense = Expense(title = title, amount = amt, category = category, notes = notes)
+
+                // Add expense
                 viewModel.addExpense(expense)
+                // Hide keyboard
                 keyboardController?.hide()
             }) {
                 Text("Submit")
             }
             Spacer(Modifier.width(8.dp))
+
+            // Navigate back to list
             Button(onClick = onNavigateToList) { Text("View List") }
         }
     }

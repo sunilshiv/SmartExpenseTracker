@@ -11,6 +11,13 @@ import com.assignment.expensetracker.ui.screens.ExpenseListScreen
 import com.assignment.expensetracker.ui.screens.ExpenseReportScreen
 import com.assignment.expensetracker.ui.theme.ScreenScaffold
 
+/**
+ * Navigation graph for the Expense Tracker app.
+ * Defines 3 routes:
+ * - "list"   -> ExpenseListScreen
+ * - "add"    -> ExpenseEntryScreen
+ * - "report" -> ExpenseReportScreen
+ */
 @Composable
 fun ExpenseNavGraph(navController: NavHostController) {
     val navBackStackEntry = navController.currentBackStackEntryAsState()
