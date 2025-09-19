@@ -11,11 +11,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.assignment.expensetracker.data.model.Expense
 import com.assignment.expensetracker.ui.viewmodels.ExpenseViewModel
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.assignment.expensetracker.ui.theme.CategoryDropdown
 
 @Composable
 fun ExpenseEntryScreen(
@@ -28,6 +30,8 @@ fun ExpenseEntryScreen(
     var amountText by remember { mutableStateOf("") }
     var category by remember { mutableStateOf("Staff") }
     var notes by remember { mutableStateOf("") }
+    var selectedCategory by remember { mutableStateOf("Food") }
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     // sample submit animation: scale on submit
     val animateScale by remember { mutableStateOf(1f) }
@@ -42,13 +46,18 @@ fun ExpenseEntryScreen(
         OutlinedTextField(value = amountText, onValueChange = { amountText = it }, label = { Text("Amount (₹)") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number))
         Spacer(Modifier.height(8.dp))
-        Row {
+        CategoryDropdown(
+            categories = listOf("Food", "Transport", "Shopping", "Bills", "Other"),
+            selectedCategory = selectedCategory,
+            onCategorySelected = { selectedCategory = it }
+        )
+       /* Row {
             listOf("Staff", "Travel", "Food", "Utility").forEach { cat ->
                 Button(onClick = { category = cat }, modifier = androidx.compose.ui.Modifier.padding(end = 8.dp)) {
                     Text(cat)
                 }
             }
-        }
+        }*/
         Spacer(Modifier.height(8.dp))
         OutlinedTextField(value = notes, onValueChange = { if (it.length <= 100) notes = it }, label = { Text("Notes (optional)") })
         Spacer(Modifier.height(12.dp))
@@ -57,6 +66,7 @@ fun ExpenseEntryScreen(
                 val amt = amountText.toDoubleOrNull() ?: 0.0
                 val expense = Expense(title = title, amount = amt, category = category, notes = notes)
                 viewModel.addExpense(expense)
+                keyboardController?.hide()
             }) {
                 Text("Submit")
             }
