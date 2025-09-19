@@ -8,7 +8,7 @@ Implementing Jetpack Compose UI screens, navigation graph, and reusable componen
 
 Adding and refactoring charting features (Vico → MPAndroidChart) to remove dummy values.
 
-Improving UX features such as keyboard hiding, dropdown alignment, and back navigation.
+Improving UX features such as dropdown alignment.
 
 Creating documentation (README, comments, usage summary).
 
