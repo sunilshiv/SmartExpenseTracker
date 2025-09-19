@@ -6,9 +6,15 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
+/**
+ * Domain models for reports
+ */
 data class DailyTotal(val dateMillis: Long, val total: Double)
 data class CategoryTotal(val category: String, val total: Double)
 
+/**
+ * GetReportUseCase - fetches both daily and category totals
+ */
 class GetReportUseCase @Inject constructor(
     private val repo: ExpenseRepository
 ) {

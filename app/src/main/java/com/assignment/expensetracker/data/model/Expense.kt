@@ -4,6 +4,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
 
+/**
+ * Expense entity stored in Room database.
+ * Represents a single expense entry.
+ */
 @Entity(tableName = "expenses")
 data class Expense(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),

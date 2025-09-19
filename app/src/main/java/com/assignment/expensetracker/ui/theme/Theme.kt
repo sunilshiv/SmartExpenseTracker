@@ -104,6 +104,10 @@ fun ScreenScaffold(
     )
 }
 
+/**
+ * A reusable dropdown menu for selecting categories.
+ * Used in ExpenseEntryScreen and can be reused elsewhere.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CategoryDropdown(

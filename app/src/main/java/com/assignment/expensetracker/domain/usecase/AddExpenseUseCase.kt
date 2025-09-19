@@ -4,6 +4,9 @@ import com.assignment.expensetracker.data.model.Expense
 import com.assignment.expensetracker.data.repo.ExpenseRepository
 import javax.inject.Inject
 
+/**
+ * AddExpenseUseCase - wraps repository call
+ */
 class AddExpenseUseCase @Inject constructor(
     private val repo: ExpenseRepository
 ) {

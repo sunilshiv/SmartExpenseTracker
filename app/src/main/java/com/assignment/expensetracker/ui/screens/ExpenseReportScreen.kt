@@ -30,12 +30,20 @@ import com.patrykandpatrick.vico.core.entry.entryOf
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Displays BarChart (daily totals) and PieChart (category totals).
+ * Uses AndroidView with MPAndroidChart.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExpenseReportScreen(viewModel: ExpenseViewModel = hiltViewModel()) {
     val report by viewModel.reportState.collectAsState(initial = Pair(emptyList(), emptyList()))
     val (dailyTotals, categoryTotals) = report
 
+    /**
+     * Common Scaffold with TopAppBar
+     * Supports title and actions
+     */
     Scaffold(
         topBar = { TopAppBar(title = { Text("Expense Report") }) }
     ) { innerPadding ->
