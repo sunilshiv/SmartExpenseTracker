@@ -44,7 +44,7 @@ This project follows **Clean MVVM Architecture** with **UseCases**:
 ## 📸 Screenshots
 
 _Add screenshots here once the app runs_
-| Expense List | Add Expense | Expense Report |
+| Add Expense | View Expense | Expense Report |
 |--------------|-------------|----------------|
 | ![List](docs/add_expense.png) | ![Entry](docs/view_expense_category.png) | ![Report](docs/view_expense_chart.png) |
 
